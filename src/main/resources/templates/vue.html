@@ -1,0 +1,211 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <!DOCTYPE html>
+    <html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link th:href="@{extCSS/sweetalert2.min.css}" rel="stylesheet">
+        <title>Page de developpement</title>
+        <link th:href="@{css/style.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <h1>GESTION ACADEMIQUE</h1>
+        <div>
+            <ul>
+                <li><a th:href="@{/}">Page de developpement 1</a></li>
+                <li><a th:href="@{/page}">Page de developpement 2</a></li>
+                <li><a th:href="@{/studentPage}">Page de developpement 4</a></li>
+            </ul>
+        </div>
+
+         <div class="academic">
+            <h2>Parents</h2>
+            <form action="">
+                <p>
+                    <label for="firstnameFather">Nom du père</label> <input class="acd" type="text"
+                        placeholder="Nom du père" name="firstnameFather" id="firstnameFather" />
+
+                    <label for="lastnameFather">Prénom</label> <input class="acd" type="text"
+                        placeholder="Prénom du père" name="lastnameFather" id="lastnameFather" />
+
+                    <label for="addressFather">Adresse</label>
+                    <input class="acd" type="text" placeholder="Adresse " name="addressFather" id="addressFather" />
+
+                    <label for="professionFather">Profession</label>
+                    <input class="acd" type="text" placeholder="Profession du père" name="professionFather"
+                        id="professionFather" />
+
+                    <label for="emailFather">Email du père</label>
+                    <input class="acd" type="text" placeholder="Email du père" name="emailFather" id="emailFather" />
+
+                    <label for="phoneFather">Telephone</label>
+                    <input class="acd" type="text" placeholder="Telephone" name="phoneFather" id="phoneFather" />
+
+                    <label for="photoFather">Photo du père</label>
+                    <input type="text" placeholder="Photo du père" name="photoFather" id="photoFather" />
+
+                    <label for="firstnameMother">Nom de la mère</label>
+                    <input type="text" placeholder="Nom de la mère" name="firstnameMother" id="firstnameMother" />
+
+                    <label for="lastnameMother">Prénom de la mère</label>
+                    <input class="acd" type="text" placeholder="Prénom de la mère" name="lastnameMother"
+                        id="lastnameMother" />
+
+                    <label for="addressMother">Adresse de la mère</label>
+                    <input class="acd" type="text" placeholder="Adresse de la mère" name="addressMother"
+                        id="addressMother" />
+
+                    <label for="professionMother">Profession de la mère</label> <input class="acd" type="text"
+                        placeholder="Profession de la mère" name="professionMother" id="professionMother" />
+
+                    <label for="emailMother">Email de la mère</label> <input class="acd" type="text"
+                        placeholder="Email de la mère" name="emailMother" id="emailMother" />
+
+                    <label for="phoneMother">Telephone</label> <input class="acd" type="text"
+                        placeholder=" Telephone de la mère" name="phoneMother" id="phoneMother" />
+
+                    <label for="photoMother">Photo de la mère</label>
+                    <input type="text" placeholder="Photo du père" name="photoMother" id="photoMother" />
+
+                    <button id="parents">Save</button>
+                </p>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom Pere</th>
+                        <th>Prenom Pere</th>
+                        <th>Profession Pere</th>
+                        <th>Adresse Pere</th>
+                        <th>Email Pere</th>
+                        <th>Phone Prer</th>
+                        <th>Photo Pere</th>
+                        <th>Nom Mère</th>
+                        <th>Prenom Mère</th>
+                        <th>Profession Mère</th>
+                        <th>Adresse Mère</th>
+                        <th>Email Mère</th>
+                        <th>Phone Mère</th>
+                        <th>Photo Mère</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="l:${parents}">
+                        <td th:text="${l.firstnameFather}"></td>
+                        <td th:text="${l.lastnameFather}"></td>
+                        <td th:text="${l.professionFather}"></td>
+                        <td th:text="${l.addressFather}"></td>
+                        <td th:text="${l.emailFather}"></td>
+                        <td th:text="${l.phoneFather}"></td>
+                        <td th:text="${l.photoFather}"></td>
+                        <td th:text="${l.firstnameMother}"></td>
+                        <td th:text="${l.lastnameMother}"></td>
+                        <td th:text="${l.professionMother}"></td>
+                        <td th:text="${l.addressMother}"></td>
+                        <td th:text="${l.emailMother}"></td>
+                        <td th:text="${l.phoneMother}"></td>
+                        <td th:text="${l.photoMother}"></td>
+                        <td>
+                            <button>
+                                <i class='bx bx-message-square-edit'></i>
+                            </button>
+                            <button th:title="${l.idParents}" type="button" class="parents">
+                                <i class='bx bx-recycle'></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div> 
+
+
+
+        <div class="academic">
+            <h2>Matière</h2>
+            <form action="">
+                <p>
+                    <label for="nameSubject">Nom de la matière</label> <input class="acd" type="text"
+                        placeholder="Nom de la matière" name="nameSubject" id="nameSubject" />
+
+                    <label for="notesurSubject">Note sur :</label> <input class="acd" type="number"
+                        placeholder="Note sur " name="notesurSubject" id="notesurSubject" />
+
+
+                    <label for="codecourseSubject">Matricule matière</label>
+                    <input class="acd" type="text" placeholder="Matricule matière" name="codecourseSubject"
+                        id="codecourseSubject" />
+
+                    <label for="coefficientSubject">Coefficient</label>
+                    <input class="acd" type="number" name="coefficientSubject" id="coefficientSubject"
+                        placeholder="Coefficient de la matière" />
+
+                    <select type="select" name="classroom_id" id="classroom_id">
+                        <option value="" disabled selected>Sélectionnez la classe</option>
+                        <option th:each="c:${classrooms}" th:text="${c.acronymClassroom}" th:value="${c.idClassroom}">
+                    </select>
+
+                    <select type="select" name="teacher_id" id="teacher_id" class="">
+                        <option value="" disabled selected>Sélectionnez le maitre de la matière</option>
+                        <option th:each="l:${teachers}" th:text="${l.firstnameTeacher}" th:value="${l.idTeacher}">
+                    </select>
+
+
+
+                    <button id="subject">Save</button>
+                </p>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom de la matière</th>
+                        <th>Note sur </th>
+                        <th>Matricule matière </th>
+                        <th>Coefficient</th>
+
+                        <th>Teacher</th>
+                        <th>Classroom</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="t:${subjects}">
+                        <td th:text="${t.nameSubject}"></td>
+                        <td th:text="${t.notesurSubject}"></td>
+                        <td th:text="${t.codecourseSubject}"></td>
+                        <td th:text="${t.coefficientSubject}"></td>
+                        <td th:text="${t.teacher.firstnameTeacher}"></td>
+                        <td th:text="${t.classroom.acronymClassroom}"></td>
+
+                        <td>
+                            <button>
+                                <i class='bx bx-message-square-edit'></i>
+                            </button>
+                            <button th:title="${t.idSubject}" type="button" class="subject">
+                                <i class='bx bx-recycle'></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <script th:src="@{extJS/jquery.min.js}"></script>
+        <script th:src="@{extJS/sweetalert2.min.js}"></script>
+        <script th:src="@{js/doc3.js}"></script>
+    </body>
+
+    </html>
+</th:block>

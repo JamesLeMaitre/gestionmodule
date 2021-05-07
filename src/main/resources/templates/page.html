@@ -1,0 +1,279 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<!DOCTYPE html>
+	<html lang="fr">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+		<link th:href="@{extCSS/sweetalert2.min.css}" rel="stylesheet">
+		<title>Page de developpement</title>
+		<link th:href="@{css/style.css}" rel="stylesheet" />
+	</head>
+
+	<body>
+		<h1>GESTION ACADEMIQUE</h1>
+        <nav>
+			<ul>
+				<li><a th:href="@{/}">Page de developpement 1</a></li>
+				<li><a th:href="@{/studentinfo}">Page de developpement 3</a></li>
+				<li><a th:href="@{/studentPage}">Page de developpement 4</a></li>
+
+			</ul>
+		</nav>
+
+		<div class="academic">
+			<h2>School</h2>
+			<form action="">
+				<p>
+					<label for="schoolname">Nom school</label> <input class="acd" type="text"
+						placeholder="Nom de l'école" name="schoolname" id="schoolname" />
+
+					<label for="levelSchool">Grade école</label> <input class="acd" type="text"
+						placeholder="Level school" name="levelSchool" id="levelSchool" />
+
+					<label for="logoSchool">Logo</label> <input class="acd" type="text" placeholder="Logo de l'école "
+						name="logoSchool" id="logoSchool" />
+
+					<label for="mottoSchool">Devise</label> <input class="acd" type="text" placeholder="Devise"
+						name="mottoSchool" id="mottoSchool" />
+
+					<label for="creationdateSchool">Date de création</label> <input class="acd" type="date"
+						placeholder="Date de création" name="creationdateSchool" id="creationdateSchool" />
+
+					<label for="founderSchool">Nom du fondateur</label> <input class="acd" type="text"
+						placeholder="Fondateur" name="founderSchool" id="founderSchool" />
+
+					<label for="generalmanagerSchool">Directeur</label>
+					<input type="text" placeholder="Directeur" name="generalmanagerSchool" id="generalmanagerSchool" />
+
+					<label for="emailSchool">Email</label>
+					<input type="text" placeholder="Email" name="emailSchool" id="emailSchool" />
+
+					<label for="phoneSchool">Telephone</label>
+					<input type="text" placeholder="Telephone" name="phoneSchool" id="phoneSchool" />
+
+					<select  name="academical_id" id="academical_id">
+						<option value="" selected disabled>Sélectionnez l'année académique</option>
+						<option th:each="l:${academicals}" th:text="${l.academicyear}" th:value="${l.idAcademical}">
+						</option>
+					</select>
+
+					<button id="school">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Nom school</th>
+						<th>Grade</th>
+						<th>Logo</th>
+						<th>Devise</th>
+						<th>Date de création</th>
+						<th>Fondateur</th>
+						<th>Directeur</th>
+						<th>Email</th>
+						<th>Telephone</th>
+						<th>Academic Year</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="l:${schoolss}">
+						<td th:text="${l.schoolname}"></td>
+						<td th:text="${l.levelSchool}"></td>
+						<td th:text="${l.logoSchool}"></td>
+						<td th:text="${l.mottoSchool}"></td>
+						<td th:text="${l.creationdateSchool}"></td>
+						<td th:text="${l.founderSchool}"></td>
+						<td th:text="${l.generalmanagerSchool}"></td>
+						<td th:text="${l.emailSchool}"></td>
+						<td th:text="${l.phoneSchool}"></td>
+						<td th:text="${l.academical.academicyear}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${l.idSchool}" type="button" class="school">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+        <div class="academic">
+			<h2>Membership</h2>
+			<form action="">
+				<p>
+					<label for="nameMembership">Type d'appartenance</label> <input class="acd" type="text"
+						placeholder="Primaire, Collège ,Lycée" name="nameMembership" id="nameMembership" />
+
+					
+
+					<select  name="teachdegre_id" id="teachdegre_id">
+						<option value="" selected disabled>Sélectionnez le dégré d'enseignement</option>
+						<option th:each="l:${degres}" th:text="${l.orderDegre}" th:value="${l.idDegre}">
+						</option>
+					</select>
+
+					<button id="membership">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Type d'appartenance</th>
+						<th>Dégré d'enseignement</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="l:${memberships}">
+						<td th:text="${l.nameMembership}"></td>
+						<td th:text="${l.degre.orderDegre}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${l.idMembership}" type="button" class="membership">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="academic">
+			<h2>Type d'examen</h2>
+			<form action="">
+				<p>
+					<label for="natureTypeexamination">Type d'examen</label> <input class="acd" type="text"
+						placeholder="Type d'examen" name="natureTypeexamination" id="natureTypeexamination" />
+
+						<label for="monthTypeexamination">Mois de l'examen</label> <input class="acd" type="text"
+						placeholder="Le moi d'examen" name="monthTypeexamination" id="monthTypeexamination" />
+
+					<button id="typeofexamination">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Type d'examen</th>
+						<th>Mois d'examen</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="e:${examinations}">
+						<td th:text="${e.natureTypeexamination}"></td>
+						<td th:text="${e.monthTypeexamination}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${e.idTypeexamination}" type="button" class="typeofexamination">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="academic">
+			<h2>Classroom</h2>
+			<form action="">
+				<p>
+					<label for="nameClassroom">Nom de la classe</label> <input class="acd" type="text"
+						placeholder="Nom de la classe" name="nameClassroom" id="nameClassroom" />
+
+					<label for="acronymClassroom">Acronymes classe</label> <input class="acd" type="text"
+						placeholder="Acronyme" name="acronymClassroom" id="acronymClassroom" />
+
+					<label for="effectiveClassroom">Effectif</label> <input class="acd" type="text" placeholder="Effectif de la classe "
+						name="effectiveClassroom" id="effectiveClassroom" />
+
+					<label for="seatbenchClassroom">Nombre de bancs</label> <input class="acd" type="number" placeholder="Nombre de bancs"
+						name="seatbenchClassroom" id="seatbenchClassroom" />
+
+					<label for="schoolfeesClassroom">Scolarité</label> <input class="acd" type="text"
+						placeholder="Scolarité de la classe" name="schoolfeesClassroom" id="schoolfeesClassroom" />
+
+					
+					<select  name="membership_id" id="membership_id">
+						<option value="" selected disabled>Sélectionnez membership</option>
+						<option th:each="l:${memberships}" th:text="${l.nameMembership}" th:value="${l.idMembership}">
+						</option>
+					</select>
+
+					<select  name="cycle_id" id="cycle_id">
+						<option value="" selected disabled>Sélectionnez le cycle</option>
+						<option th:each="c:${cycles}" th:text="${c.nameCycle}" th:value="${c.idCycle}">
+						</option>
+					</select>
+
+					<button id="classroom">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Nom de la classe</th>
+						<th>Acronyme</th>
+						<th>Effectif</th>
+						<th>Nombre de bancs</th>
+						<th>Scolarité</th>
+						<th>Membership</th>
+						<th>Cycle</th>
+						
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="l:${classrooms}">
+						<td th:text="${l.nameClassroom}"></td>
+						<td th:text="${l.acronymClassroom}"></td>
+						<td th:text="${l.effectiveClassroom}"></td>
+						<td th:text="${l.seatbenchClassroom}"></td>
+						<td th:text="${l.schoolfeesClassroom}"></td>
+						
+						<td th:text="${l.membership.nameMembership}"></td>
+						<td th:text="${l.cycle.nameCycle}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${l.idClassroom}" type="button" class="classroom">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+
+		<script th:src="@{extJS/jquery.min.js}"></script>
+		<script th:src="@{extJS/sweetalert2.min.js}"></script>
+		<script th:src="@{js/doc.js}"></script>
+		<script th:src="@{js/doc2.js}"></script>
+	</body>
+
+	</html>
+</th:block>

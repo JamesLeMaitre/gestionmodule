@@ -1,0 +1,219 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <!DOCTYPE html>
+    <html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <link th:href="@{extCSS/sweetalert2.min.css}" rel="stylesheet">
+        <title>Page de developpement</title>
+        <link th:href="@{css/style.css}" rel="stylesheet" />
+    </head>
+
+    <body>
+        <h1>GESTION ACADEMIQUE</h1>
+        <div>
+            <ul>
+                <li><a th:href="@{/}">Page de developpement 1</a></li>
+                <li><a th:href="@{/page}">Page de developpement 2</a></li>
+                <li><a th:href="@{/studentinfo}">Page de developpement 3</a></li>
+            </ul>
+        </div>
+
+
+        <div class="academic">
+            <h2>Student</h2>
+            <form action="">
+                <p>
+                    <label for="firstnameStudent">Nom du Maitre</label> <input class="acd" type="text"
+                        placeholder="Nom de l'élève" name="firstnameStudent" id="firstnameStudent" />
+
+                    <label for="lastnameStudent">Prénom de l'élève</label> <input class="acd" type="text"
+                        placeholder="Prénom du maitre" name="lastnameStudent" id="lastnameStudent" />
+
+                    <label for="adressStudent">Adresse de l'élève</label>
+                    <input class="acd" type="text" placeholder="Adresse de l'élève" name="adressStudent"
+                        id="adressStudent" />
+
+                    <label for="sexStudent">Sexe</label>
+                    <input class="acd" type="text" placeholder="Sexe de l'éleve" name="sexStudent" id="sexStudent" />
+
+                    <label for="birthdayStudent">Date de naissance</label>
+                    <input class="acd" type="date" placeholder="Date de naissance" name="birthdayStudent"
+                        id="birthdayStudent" />
+
+                    <label for="placeofbirthStudent">Lieu de naissance</label>
+                    <input type="text" placeholder="Lieu de naissance" name="placeofbirthStudent"
+                        id="placeofbirthStudent" />
+
+                    <label for="statutStudent">Status de l'élève</label>
+                    <input type="text" placeholder="Status de l'élève" name="statutStudent" id="statutStudent" />
+
+                    <label for="physicalstateStudent">Etat physique de l'élève</label>
+                    <input type="text" placeholder="Etat physique de l'élève" name="physicalstateStudent"
+                        id="physicalstateStudent" />
+
+                    <label for="maritalstatusStudent">Situation matrimoniale de l'élève</label>
+                    <input type="text" placeholder="Situation matrimoniale de l'élève" name="maritalstatusStudent"
+                        id="maritalstatusStudent" />
+
+                    <label for="serialnumberStudent">Matricule</label>
+                    <input class="acd" type="text" placeholder="Numéro matricule" name="serialnumberStudent"
+                        id="serialnumberStudent" />
+
+                    <label for="persontocontactStudent">Personne à prévenir</label>
+                    <input class="acd" type="text" placeholder="Personne à prévenir" name="persontocontactStudent"
+                        id="persontocontactStudent" />
+
+                    <label for="schooloforiginStudent">Ecole de provenance</label>
+                    <input class="acd" type="text" placeholder="Ecole de provenance" name="schooloforiginStudent"
+                        id="schooloforiginStudent" />
+
+                    <select type="select" name="classroom_id" id="classroom_id" class="">
+                        <option value="" disabled selected>Attribuer la classe de l'élève</option>
+                        <option th:each="l:${classrooms}" th:text="${l.acronymClassroom}" th:value="${l.idClassroom}">
+                    </select>
+
+                    <select type="select" name="teacher_id" id="teacher_id" class="">
+                        <option value="" disabled selected>Selectionnre le maitre</option>
+                        <option th:each="l:${teachers}" th:text="${l.firstnameTeacher}" th:value="${l.idTeacher}">
+                    </select>
+
+                    <select type="select" name="registration_id" id="registration_id" class="">
+                        <option value="" disabled selected>Année academique</option>
+                        <option th:each="l:${registrations}" th:text="${l.academical.academicyear}" th:value="${l.idRegistration}">
+                    </select>
+
+                    <select type="select" name="parents_id" id="parents_id" class="">
+                        <option value="" disabled selected>Attribuer les parents de l'élève</option>
+                        <option th:each="l:${parents}" th:text="${l.firstnameFather}" th:value="${l.idParents}">
+                    </select>
+
+                    <button id="student">Save</button>
+                </p>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom </th>
+                        <th>Sexe </th>
+                        <th>Date de naissance</th>
+                        <th>Lieu de naissance</th>
+                        <th>Status </th>
+                        <th>Adresse </th>
+                        <th>Num Matricule</th>
+                        <th>Num. personne à prevenir</th>
+                        <th>Etat physique</th>
+                        <th>Situation matrimoniale</th>
+                        <th>Ecole de provenance</th>
+                        <th>Classe </th>
+                        <th>Maitre </th>
+                        <th>Année academique </th>
+                        <th>Nom Père </th>
+
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s:${students}">
+                        <td th:text="${s.firstnameStudent}"></td>
+                        <td th:text="${s.lastnameStudent}"></td>
+                        <td th:text="${s.sexStudent}"></td>
+                        <td th:text="${s.birthdayStudent}"></td>
+                        <td th:text="${s.placeofbirthStudent}"></td>
+                        <td th:text="${s.statutStudent}"></td>
+                        <td th:text="${s.adressStudent}"></td>
+                        <td th:text="${s.serialnumberStudent}"></td>
+                        <td th:text="${s.persontocontactStudent}"></td>
+                        <td th:text="${s.physicalstateStudent}"></td>
+                        <td th:text="${s.maritalstatusStudent}"></td>
+                        <td th:text="${s.schooloforiginStudent}"></td>
+                        <td th:text="${s.classroom.acronymClassroom}"></td>
+                        <td th:text="${s.teacher.firstnameTeacher}"></td>
+                        <td th:text="${s.registration.academical.academicyear}"></td>
+                        <td th:text="${s.parents.firstnameFather}"></td>
+
+                        <td>
+                            <button>
+                                <i class='bx bx-message-square-edit'></i>
+                            </button>
+                            <button th:title="${s.idStudent}" type="button" class="student">
+                                <i class='bx bx-recycle'></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="academic">
+            <h2>Note</h2>
+            <form action="">
+                <p>
+                    <label for="note">Note de l'élève</label> <input class="acd" type="number"
+                        placeholder="Note de l'élève" name="note" id="note" />
+
+                   
+
+                    <select type="select" name="student_id" id="student_id" class="">
+                        <option value="" disabled selected>Elève correspondant</option>
+                        <option th:each="l:${students}" th:text="${l.firstnameStudent}" th:value="${l.idStudent}">
+                    </select>
+
+                    <select type="select" name="subject_id" id="subject_id" class="">
+                        <option value="" disabled selected>Selectionnre la matière</option>
+                        <option th:each="l:${subjects}" th:text="${l.nameSubject}" th:value="${l.idSubject}">
+                    </select>
+
+                    <select type="select" name="examination_id" id="examination_id" class="">
+                        <option value="" disabled selected>Choisir le type d'examen</option>
+                        <option th:each="l:${examinations}" th:text="${l.natureTypeexamination}" th:value="${l.idTypeexamination}">
+                    </select>
+
+                    <button id="notes">Save</button>
+                </p>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Note </th>
+                        <th>Eleve </th>
+                        <th>Matière</th>
+                        <th>Examen </th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="s:${notes}">
+                        <td th:text="${s.note}"></td>
+                        <td th:text="${s.student.firstnameStudent}"></td>
+                        <td th:text="${s.subject.nameSubject}"></td>
+                        <td th:text="${s.examination.natureTypeexamination}"></td>
+                        <td>
+                            <button>
+                                <i class='bx bx-message-square-edit'></i>
+                            </button>
+                            <button th:title="${s.idNote}" type="button" class="notes">
+                                <i class='bx bx-recycle'></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script th:src="@{extJS/jquery.min.js}"></script>
+        <script th:src="@{extJS/sweetalert2.min.js}"></script>
+        <script th:src="@{js/doc4.js}"></script>
+    </body>
+
+    </html>
+</th:block>

@@ -1,0 +1,271 @@
+<th:block xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<!DOCTYPE html>
+	<html lang="fr">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+		<link th:href="@{extCSS/sweetalert2.min.css}" rel="stylesheet">
+		<title>Page de developpement</title>
+		<link th:href="@{css/style.css}" rel="stylesheet" />
+	</head>
+
+	<body>
+		<h1>GESTION ACADEMIQUE</h1>
+		<div>
+			<ul>
+				<li><a th:href="@{/page}">Page de developpement 2</a></li>
+				<li><a th:href="@{/studentinfo}">Page de developpement 3</a></li>
+				<li><a th:href="@{/studentPage}">Page de developpement 4</a></li>
+			</ul>
+		</div>
+		<div class="academic">
+			<h2>Année académique</h2>
+			<form action="">
+				<p>
+					<label for="academicyear">Année académique</label> <input class="acd" type="text"
+						placeholder="Ajouter l'année " name="academicyear" id="academicyear" />
+					<button id="yearAcademic">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Année académique</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="l:${academicals}">
+						<td th:text="${l.academicyear}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${l.idAcademical}" type="button" class="academical">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+		
+		<div class="academic">
+			<h2>Cycle</h2>
+			<form action="">
+				<p>
+					<label for="cyclename">Nom cycle</label> <input class="acd" type="text"
+						placeholder="Ajouter un cycle" name="cyclename" id="cyclename" />
+					<button id="cycle">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Nom des cycles</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c:${cycles}">
+						<td th:text="${c.nameCycle}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${c.idCycle}" type="button" class="cycle">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="academic">
+			<h2>Dégré d'enseignement</h2>
+			<form action="">
+				<p>
+					<label for="orderDegre">Degre</label> <input class="acd" type="text"
+						placeholder="Ajouter un dégré" name="orderDegre" id="orderDegre" />
+					<button id="degre">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Type de dégré</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c:${degres}">
+						<td th:text="${c.orderDegre}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${c.idDegre}" type="button" class="degre">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+
+		<div class="academic">
+			<h2>Registration</h2>
+			<form action="">
+				<p>
+					<label for="academical_id">Nom cycle</label>
+					<select class="acd" type="select" name="academical_id" id="academical_id">
+						<option value="" selected disabled>Sélectionnez l'année académique</option>
+						<option th:each="l:${academicals}" th:text="${l.academicyear}" th:value="${l.idAcademical}">
+						</option>
+					</select>
+					<button id="registration">Save</button>
+				</p>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Registrations</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="c:${registrations}">
+						<td th:text="${c.academical.academicyear}"></td>
+						<td>
+							<button>
+								<i class='bx bx-message-square-edit'></i>
+							</button>
+							<button th:title="${c.idRegistration}" type="button" class="registration">
+								<i class='bx bx-recycle'></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="academic">
+            <h2>Teacher</h2>
+            <form action="">
+                <p>
+                    <label for="firstnameTeacher">Nom du Maitre</label> <input class="acd" type="text"
+                        placeholder="Nom du maitre" name="firstnameTeacher" id="firstnameTeacher" />
+
+                    <label for="lastnameTeacher">Prénom du maitre</label> <input class="acd" type="text"
+                        placeholder="Prénom du maitre" name="lastnameTeacher" id="lastnameTeacher" />
+
+                    <label for="addressTeacher">Adresse du maitre</label>
+                    <input class="acd" type="text" placeholder="Adresse du maitre" name="addressTeacher"
+                        id="addressTeacher" />
+
+                    <label for="sexTeacher">Sexe</label>
+                    <input class="acd" type="text" placeholder="Sexe du maitre" name="sexTeacher" id="sexTeacher" />
+
+                    <label for="emailTeacher">Email du maitre</label>
+                    <input class="acd" type="text" placeholder="Email du MAITRE" name="emailTeacher"
+                        id="emailTeacher" />
+
+                    <label for="phoneTeacher">Telephone du maitre</label>
+                    <input class="acd" type="text" placeholder="Telephone du maitre" name="phoneTeacher"
+                        id="phoneTeacher" />
+
+                    <label for="postboxTeacher">BP du maitre</label>
+                    <input type="text" placeholder="Boite postale du maitre" name="postboxTeacher"
+                        id="postboxTeacher" />
+
+                    <label for="serialnumberTeacher">N¨ Matricule</label>
+                    <input type="text" placeholder="Numéro matricule du maitre" name="serialnumberTeacher"
+                        id="serialnumberTeacher" />
+
+                    <label for="idnumberTeacher">ID Number</label>
+                    <input class="acd" type="text" placeholder="Numéro de la piède d'identité" name="idnumberTeacher"
+                        id="idnumberTeacher" />
+
+                    <label for="typeidTeacher">Type de pièce d'identité</label>
+                    <input class="acd" type="text" placeholder="Adresse de la mère" name="typeidTeacher"
+                        id="typeidTeacher" />
+
+                    <select type="select" name="classroom_id" id="classroom_id" class="">
+                        <option value="" disabled selected>Attribuer la classe au Maitre</option>
+                        <option th:each="l:${classrooms}" th:text="${l.acronymClassroom}" th:value="${l.idClassroom}">
+                    </select>
+
+                    <button id="teacher">Save</button>
+                </p>
+            </form>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prenom </th>
+                        <th>Adresse </th>
+                        <th>Sexe</th>
+                        <th>Email </th>
+                        <th>Phone </th>
+                        <th>BP </th>
+                        <th>Num Matricule</th>
+                        <th>ID Number</th>
+                        <th>Type de ID</th>
+                        <th>classroom</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="l:${teachers}">
+                        <td th:text="${l.firstnameTeacher}"></td>
+                        <td th:text="${l.lastnameTeacher}"></td>
+                        <td th:text="${l.addressTeacher}"></td>
+                        <td th:text="${l.sexTeacher}"></td>
+                        <td th:text="${l.emailTeacher}"></td>
+                        <td th:text="${l.phoneTeacher}"></td>
+                        <td th:text="${l.postboxTeacher}"></td>
+                        <td th:text="${l.serialnumberTeacher}"></td>
+                        <td th:text="${l.idnumberTeacher}"></td>
+                        <td th:text="${l.typeidTeacher}"></td>
+                        <td th:text="${l.classroom.acronymClassroom}"></td>
+
+                        <td>
+                            <button>
+                                <i class='bx bx-message-square-edit'></i>
+                            </button>
+                            <button th:title="${l.idTeacher}" type="button" class="teacher">
+                                <i class='bx bx-recycle'></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+		<script th:src="@{extJS/jquery.min.js}"></script>
+		<script th:src="@{extJS/sweetalert2.min.js}"></script>
+		<script th:src="@{js/doc.js}"></script>
+		<script th:src="@{js/doc4.js}"></script>
+	</body>
+
+	</html>
+</th:block>
