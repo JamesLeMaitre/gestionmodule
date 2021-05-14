@@ -28,8 +28,14 @@ public class SubjectRestController {
 		}
 		return res;
 	}
+	
 	@GetMapping("/deleteSubject/{id}")
 	public boolean deleteSubjects(@PathVariable long id) {
 		return subjectMethode.deleteSubject(id);
+	}
+	
+	@GetMapping("/updateSubject/{id}")
+	public Subject updatingSubject(@PathVariable long id) {
+		return subjectMethode.updateSubject(id);
 	}
 }

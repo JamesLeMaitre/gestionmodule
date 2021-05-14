@@ -10,12 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "subject")
 public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,7 +92,6 @@ public class Subject {
 		this.teacher = teacher;
 	}
 
-	@JsonIgnore
 	public Classroom getClassroom() {
 		return classroom;
 	}
@@ -103,7 +99,8 @@ public class Subject {
 	public void setClassroom(Classroom classroom) {
 		this.classroom = classroom;
 	}
-
+	
+	@JsonIgnore
 	public Set<Note> getNotes() {
 		return notes;
 	}

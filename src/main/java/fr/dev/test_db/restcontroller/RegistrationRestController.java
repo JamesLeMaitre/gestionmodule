@@ -33,5 +33,10 @@ public class RegistrationRestController {
 	public boolean deleteRegistration(@PathVariable long id) {
 		return registrationMethode.deleteRegistration(id);
 	}
+	
+	@GetMapping("/updateRegistration/{id}")
+	public Registration updateRegistration(@PathVariable long id) {
+		return registrationMethode.updateRegistration(id);
+	}
 
 }

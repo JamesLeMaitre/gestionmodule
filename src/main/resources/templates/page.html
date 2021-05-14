@@ -27,41 +27,43 @@
 		</nav>
 
 		<div class="academic">
-			<h2>School</h2>
+
+			<h2 id="schID">School</h2>
 			<form action="">
 				<p>
 					<label for="schoolname">Nom school</label> <input class="acd" type="text"
-						placeholder="Nom de l'école" name="schoolname" id="schoolname" />
+						placeholder="Nom de l'école" name="schoolname" id="schoolname" /><br />
 
 					<label for="levelSchool">Grade école</label> <input class="acd" type="text"
-						placeholder="Level school" name="levelSchool" id="levelSchool" />
+						placeholder="Level school" name="levelSchool" id="levelSchool" /><br />
 
 					<label for="logoSchool">Logo</label> <input class="acd" type="text" placeholder="Logo de l'école "
-						name="logoSchool" id="logoSchool" />
+						name="logoSchool" id="logoSchool" /><br />
 
 					<label for="mottoSchool">Devise</label> <input class="acd" type="text" placeholder="Devise"
-						name="mottoSchool" id="mottoSchool" />
+						name="mottoSchool" id="mottoSchool" /><br />
 
 					<label for="creationdateSchool">Date de création</label> <input class="acd" type="date"
-						placeholder="Date de création" name="creationdateSchool" id="creationdateSchool" />
+						placeholder="Date de création" name="creationdateSchool" id="creationdateSchool" /><br />
 
 					<label for="founderSchool">Nom du fondateur</label> <input class="acd" type="text"
-						placeholder="Fondateur" name="founderSchool" id="founderSchool" />
+						placeholder="Fondateur" name="founderSchool" id="founderSchool" /><br />
 
 					<label for="generalmanagerSchool">Directeur</label>
-					<input type="text" placeholder="Directeur" name="generalmanagerSchool" id="generalmanagerSchool" />
+					<input type="text" placeholder="Directeur" name="generalmanagerSchool" id="generalmanagerSchool" /><br />
 
 					<label for="emailSchool">Email</label>
-					<input type="text" placeholder="Email" name="emailSchool" id="emailSchool" />
+					<input type="text" placeholder="Email" name="emailSchool" id="emailSchool" /><br />
 
 					<label for="phoneSchool">Telephone</label>
-					<input type="text" placeholder="Telephone" name="phoneSchool" id="phoneSchool" />
-
+					<input type="text" placeholder="Telephone" name="phoneSchool" id="phoneSchool" /><br />
+	
+					<label for="academical_id">Année académique</label>
 					<select  name="academical_id" id="academical_id">
 						<option value="" selected disabled>Sélectionnez l'année académique</option>
 						<option th:each="l:${academicals}" th:text="${l.academicyear}" th:value="${l.idAcademical}">
 						</option>
-					</select>
+					</select><br />
 
 					<button id="school">Save</button>
 				</p>
@@ -96,7 +98,7 @@
 						<td th:text="${l.phoneSchool}"></td>
 						<td th:text="${l.academical.academicyear}"></td>
 						<td>
-							<button>
+							<button th:title="${l.idSchool}" type="button" class="school_edit">
 								<i class='bx bx-message-square-edit'></i>
 							</button>
 							<button th:title="${l.idSchool}" type="button" class="school">
@@ -110,19 +112,19 @@
 		</div>
 
         <div class="academic">
-			<h2>Membership</h2>
+			<h2 id="mID">Membership</h2>
 			<form action="">
 				<p>
 					<label for="nameMembership">Type d'appartenance</label> <input class="acd" type="text"
-						placeholder="Primaire, Collège ,Lycée" name="nameMembership" id="nameMembership" />
+						placeholder="Primaire, Collège ,Lycée" name="nameMembership" id="nameMembership" /><br/>
 
 					
-
+					<label for="teachdegre">Dégré d'enseignement</label>
 					<select  name="teachdegre_id" id="teachdegre_id">
 						<option value="" selected disabled>Sélectionnez le dégré d'enseignement</option>
 						<option th:each="l:${degres}" th:text="${l.orderDegre}" th:value="${l.idDegre}">
 						</option>
-					</select>
+					</select><br/>
 
 					<button id="membership">Save</button>
 				</p>
@@ -141,7 +143,7 @@
 						<td th:text="${l.nameMembership}"></td>
 						<td th:text="${l.degre.orderDegre}"></td>
 						<td>
-							<button>
+							<button  th:title="${l.idMembership}" type="button" class="membership_edit">
 								<i class='bx bx-message-square-edit'></i>
 							</button>
 							<button th:title="${l.idMembership}" type="button" class="membership">
@@ -155,14 +157,14 @@
 		</div>
 
 		<div class="academic">
-			<h2>Type d'examen</h2>
+			<h2 id="examenID">Type d'examen</h2>
 			<form action="">
 				<p>
 					<label for="natureTypeexamination">Type d'examen</label> <input class="acd" type="text"
-						placeholder="Type d'examen" name="natureTypeexamination" id="natureTypeexamination" />
+						placeholder="Type d'examen" name="natureTypeexamination" id="natureTypeexamination" /><br/>
 
 						<label for="monthTypeexamination">Mois de l'examen</label> <input class="acd" type="text"
-						placeholder="Le moi d'examen" name="monthTypeexamination" id="monthTypeexamination" />
+						placeholder="Le moi d'examen" name="monthTypeexamination" id="monthTypeexamination" /><br/>
 
 					<button id="typeofexamination">Save</button>
 				</p>
@@ -181,7 +183,7 @@
 						<td th:text="${e.natureTypeexamination}"></td>
 						<td th:text="${e.monthTypeexamination}"></td>
 						<td>
-							<button>
+							<button th:title="${e.idTypeexamination}" type="button" class="typeofexamination_edit">
 								<i class='bx bx-message-square-edit'></i>
 							</button>
 							<button th:title="${e.idTypeexamination}" type="button" class="typeofexamination">
@@ -195,36 +197,37 @@
 		</div>
 
 		<div class="academic">
-			<h2>Classroom</h2>
+			<h2 id="classID">Classroom</h2>
 			<form action="">
 				<p>
 					<label for="nameClassroom">Nom de la classe</label> <input class="acd" type="text"
-						placeholder="Nom de la classe" name="nameClassroom" id="nameClassroom" />
+						placeholder="Nom de la classe" name="nameClassroom" id="nameClassroom" /><br/>
 
 					<label for="acronymClassroom">Acronymes classe</label> <input class="acd" type="text"
-						placeholder="Acronyme" name="acronymClassroom" id="acronymClassroom" />
+						placeholder="Acronyme" name="acronymClassroom" id="acronymClassroom" /><br/>
 
 					<label for="effectiveClassroom">Effectif</label> <input class="acd" type="text" placeholder="Effectif de la classe "
-						name="effectiveClassroom" id="effectiveClassroom" />
+						name="effectiveClassroom" id="effectiveClassroom" /><br/>
 
 					<label for="seatbenchClassroom">Nombre de bancs</label> <input class="acd" type="number" placeholder="Nombre de bancs"
-						name="seatbenchClassroom" id="seatbenchClassroom" />
+						name="seatbenchClassroom" id="seatbenchClassroom" /><br/>
 
 					<label for="schoolfeesClassroom">Scolarité</label> <input class="acd" type="text"
-						placeholder="Scolarité de la classe" name="schoolfeesClassroom" id="schoolfeesClassroom" />
+						placeholder="Scolarité de la classe" name="schoolfeesClassroom" id="schoolfeesClassroom" /><br/>
 
-					
+					<label for="membership">Membership</label>
 					<select  name="membership_id" id="membership_id">
 						<option value="" selected disabled>Sélectionnez membership</option>
 						<option th:each="l:${memberships}" th:text="${l.nameMembership}" th:value="${l.idMembership}">
 						</option>
-					</select>
-
+					</select><br/>
+					
+						<label for="cycle">Le cycle</label>
 					<select  name="cycle_id" id="cycle_id">
 						<option value="" selected disabled>Sélectionnez le cycle</option>
 						<option th:each="c:${cycles}" th:text="${c.nameCycle}" th:value="${c.idCycle}">
 						</option>
-					</select>
+					</select><br/>
 
 					<button id="classroom">Save</button>
 				</p>
@@ -255,7 +258,7 @@
 						<td th:text="${l.membership.nameMembership}"></td>
 						<td th:text="${l.cycle.nameCycle}"></td>
 						<td>
-							<button>
+							<button th:title="${l.idClassroom}" type="button" class="classroom_edit">
 								<i class='bx bx-message-square-edit'></i>
 							</button>
 							<button th:title="${l.idClassroom}" type="button" class="classroom">
@@ -268,11 +271,13 @@
 
 		</div>
 
-
 		<script th:src="@{extJS/jquery.min.js}"></script>
 		<script th:src="@{extJS/sweetalert2.min.js}"></script>
 		<script th:src="@{js/doc.js}"></script>
+		<script th:src="@{js/membership.js}"></script>
+		<script th:src="@{js/examination.js}"></script>
 		<script th:src="@{js/doc2.js}"></script>
+		<script th:src="@{js/classroom.js}"></script>
 	</body>
 
 	</html>

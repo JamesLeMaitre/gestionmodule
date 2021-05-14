@@ -33,5 +33,10 @@ public class TeachingDegreRestController {
 	public boolean deleteTeachingDeg(@PathVariable long id) {
 		return teachingDegreMethode.deleteTeachingDegre(id);
 	}
+	
+	@GetMapping("/updateTeachingDegre/{id}")
+	public Teaching_degre updateTeaching(@PathVariable long id) {
+		return teachingDegreMethode.updateTeachingDegre(id);
+	}
 
 }

@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Academical {
 	@Id
@@ -53,7 +55,8 @@ public class Academical {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Registration> getRegistrations() {
 		return registrations;
 	}
@@ -61,7 +64,8 @@ public class Academical {
 	public void setRegistrations(Collection<Registration> registrations) {
 		this.registrations = registrations;
 	}
-
+	
+	@JsonIgnore
 	public Collection<School> getSchools() {
 		return schools;
 	}

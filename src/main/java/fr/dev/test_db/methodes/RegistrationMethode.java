@@ -60,7 +60,16 @@ public class RegistrationMethode implements RegistrationInterface{
 	@Override
 	public Registration updateRegistration(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Registration registration = new Registration();
+		try {
+			registration = regisRepository.findById(id).orElse(null);
+			assert registration != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			registration = null;
+		}
+		return registration;
 	}
 
 }

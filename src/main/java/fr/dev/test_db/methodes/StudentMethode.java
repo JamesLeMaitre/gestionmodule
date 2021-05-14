@@ -87,6 +87,7 @@ public class StudentMethode implements StudentInterface{
 		try {
 			student = studentRepository.findById(id).orElse(null);
 			assert student != null;
+			System.out.println("Tell me what's happen !");
 		} catch (Exception e) {
 			e.printStackTrace();
 			student = null;
@@ -94,5 +95,5 @@ public class StudentMethode implements StudentInterface{
 		}
 		return student;
 	}
-
+	
 }

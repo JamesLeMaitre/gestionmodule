@@ -50,7 +50,16 @@ public class TeachingDegreMethode implements TeachingDegreInterface{
 	@Override
 	public Teaching_degre updateTeachingDegre(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Teaching_degre teaching_degre = new Teaching_degre();
+		try {
+			teaching_degre = teachingDegreRepository.findById(id).orElse(null);
+			assert teaching_degre != null;
+		} catch (Exception e) {
+			teaching_degre = null;
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		return teaching_degre;
 	}
 
 }

@@ -33,5 +33,10 @@ public class TypeOfExaminationRestController {
 	public boolean deleteTypeOfExamination(@PathVariable long id) {
 		return examinationMethode.deleteTypeOfExamination(id);
 	}
+	
+	@GetMapping("/updateTypeOfExamination/{id}")
+	public TypeOfExamination updateExamination(@PathVariable long id) {
+		return examinationMethode.updateTypeOfExamination(id);
+	}
 
 }

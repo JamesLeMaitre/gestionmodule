@@ -33,5 +33,10 @@ public class CycleRestController {
 	public boolean deleteCycles(@PathVariable long id) {
 		return cycleMethode.deleteCycle(id);
 	}
+	
+	@GetMapping("/updateCycle/{id}")
+	public Cycle updateCycles(@PathVariable long id) {
+		return cycleMethode.updateCycle(id);
+	}
 
 }

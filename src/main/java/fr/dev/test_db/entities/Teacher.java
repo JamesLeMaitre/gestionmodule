@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Teacher {
     @Id
@@ -156,7 +158,8 @@ public class Teacher {
 	public void setClassroom(Classroom classroom) {
 		this.classroom = classroom;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Subject> getSubjects() {
 		return subjects;
 	}
@@ -165,6 +168,7 @@ public class Teacher {
 		this.subjects = subjects;
 	}
 
+	@JsonIgnore
 	public Collection<Student> getStudents() {
 		return students;
 	}

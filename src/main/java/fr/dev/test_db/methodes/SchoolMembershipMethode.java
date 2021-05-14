@@ -58,7 +58,16 @@ public class SchoolMembershipMethode implements SchoolMembershipInterface {
 	@Override
 	public School_membership updateSchoolMembership(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		School_membership membership = new School_membership();
+		try {
+			membership = schoolMembershipRepository.findById(id).orElse(null);
+			assert membership != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			membership = null;
+			e.printStackTrace();
+		}
+		return membership;
 	}
 
 }

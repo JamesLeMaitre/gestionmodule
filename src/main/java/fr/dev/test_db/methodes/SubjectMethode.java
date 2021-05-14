@@ -67,7 +67,17 @@ public class SubjectMethode implements SubjectInterface{
 	@Override
 	public Subject updateSubject(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Subject subject = new Subject();
+		try {
+			subject = subjectRepository.findById(id).orElse(null);
+			assert subject != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			subject = null;
+			e.printStackTrace();
+		}
+		System.out.println(subject);
+		return subject;
 	}
 
 }

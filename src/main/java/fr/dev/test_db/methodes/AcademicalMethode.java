@@ -53,6 +53,7 @@ public class AcademicalMethode implements AcademicalInterface {
 		try {
 			academical = academicalRepository.findById(id).orElse(null);
             assert academical != null;
+           // System.out.println(academical);
 		} catch (Exception e) {
 			// TODO: handle exception
 			academical = null;

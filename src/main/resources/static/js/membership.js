@@ -125,10 +125,5 @@ $(document).ready(function () {
         let value = e.currentTarget.title;
         //log(value);
         updateMembership(value);
-    });
-
-
-   
-
-
+    })
 })

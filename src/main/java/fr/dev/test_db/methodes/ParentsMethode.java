@@ -50,7 +50,16 @@ public class ParentsMethode implements ParentsInterface{
 	@Override
 	public Parents updateParents(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Parents parents = new Parents();
+		try {
+			parents = parentsRepository.findById(id).orElse(null);
+			assert parents != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			parents = null;
+			e.printStackTrace();
+		}
+		return parents;
 	}
 
 }

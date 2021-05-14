@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class School_membership {
 	@Id
@@ -55,6 +57,7 @@ public class School_membership {
 		this.degre = degre;
 	}
 
+	@JsonIgnore
 	public Collection<Classroom> getClassrooms() {
 		return classrooms;
 	}

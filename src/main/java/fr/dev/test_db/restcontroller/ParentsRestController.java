@@ -33,5 +33,10 @@ public class ParentsRestController {
 	public boolean deleteParent(@PathVariable long id) {
 		return parentsMethode.deleteParents(id);
 	}
+	
+	@GetMapping("/updateParents/{id}")
+	public Parents updateParent(@PathVariable long id) {
+		return parentsMethode.updateParents(id);
+	}
 
 }

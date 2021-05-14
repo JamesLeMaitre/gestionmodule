@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Teaching_degre {
     @Id
@@ -35,11 +37,12 @@ public class Teaching_degre {
 	public String getOrderDegre() {
 		return orderDegre;
 	}
-
+	
 	public void setOrderDegre(String orderDegre) {
 		this.orderDegre = orderDegre;
 	}
 
+	@JsonIgnore
 	public Collection<School_membership> getMemberships() {
 		return memberships;
 	}

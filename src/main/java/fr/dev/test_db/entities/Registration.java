@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author James
  */
@@ -46,6 +48,7 @@ public class Registration {
 		this.academical = academical;
 	}
 
+	@JsonIgnore
 	public Collection<Student> getStudents() {
 		return students;
 	}

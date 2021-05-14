@@ -19,20 +19,20 @@ import fr.dev.test_db.repositories.TypeOfExaminationRepository;
 
 @Service
 @Transactional
-public class NoteMethode implements NoteInterface{
+public class NoteMethode implements NoteInterface {
 
 	@Autowired
 	private NoteRepository noteRepository;
-	
+
 	@Autowired
 	private StudentRepository studentRepository;
-	
+
 	@Autowired
 	private SubjectRepository subjectRepository;
-	
+
 	@Autowired
 	private TypeOfExaminationRepository examinationRepository;
-	
+
 	@Override
 	public Collection<Note> notes() {
 		// TODO Auto-generated method stub
@@ -44,15 +44,15 @@ public class NoteMethode implements NoteInterface{
 		// TODO Auto-generated method stub
 		Student student = studentRepository.findById(student_id).orElse(null);
 		note.setStudent(student);
-		
+
 		TypeOfExamination examination = examinationRepository.findById(examination_id).orElse(null);
 		note.setExamination(examination);
-		
+
 		Subject subject = subjectRepository.findById(subject_id).orElse(null);
 		note.setSubject(subject);
-		
+
 		noteRepository.save(note);
-		
+
 	}
 
 	@Override
@@ -75,7 +75,16 @@ public class NoteMethode implements NoteInterface{
 	@Override
 	public Note updateNote(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Note note = new Note();
+		try {
+			note = noteRepository.findById(id).orElse(null);
+			assert note != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			note = null;
+			e.printStackTrace();
+		}
+		return note;
 	}
 
 }

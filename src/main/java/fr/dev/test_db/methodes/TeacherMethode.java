@@ -59,7 +59,16 @@ public class TeacherMethode implements TeacherInterface{
 	@Override
 	public Teacher updateTeacher(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Teacher teacher = new Teacher();
+		try {
+			teacher = teacherRepository.findById(id).orElse(null);
+			assert teacher != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			teacher = null;
+			e.printStackTrace();
+		}
+		return teacher;
 	}
 	
 }

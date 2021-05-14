@@ -58,7 +58,16 @@ public class SchoolMethode implements SchoolInterface{
 	@Override
 	public School updateSchoolInfo(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		School school = new School();
+		try {
+			school = schoolRepository.findById(id).orElse(null);
+			assert school != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			school = null;
+			e.printStackTrace();
+		}
+		return school;
 	}
 
 }

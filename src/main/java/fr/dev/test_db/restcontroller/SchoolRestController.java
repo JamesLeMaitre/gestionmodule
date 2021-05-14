@@ -33,5 +33,10 @@ public class SchoolRestController {
 	public boolean deleteSchools(@PathVariable long id) {
 		return schoolMethode.deleteSchool(id);
 	}
+	
+	@GetMapping("/updateSchool/{id}")
+	public School updateSchools(@PathVariable long id) {
+		return schoolMethode.updateSchoolInfo(id);
+	}
 
 }

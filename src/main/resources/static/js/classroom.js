@@ -4,53 +4,52 @@ $(document).ready(function () {
     let state = {
         value: "new"
     }
-
-    function getSubjectData() {
+    function getClassroomData() {
         switch (state.value) {
             case "new":
                 let data = {
-                    nameSubject: $("#nameSubject").val(),
-                    notesurSubject: $("#notesurSubject").val(),
-                    codecourseSubject: $("#codecourseSubject").val(),
-                    coefficientSubject: $("#coefficientSubject").val(),
-                    teacher_id: $("#teacher_id").val(),
-                    classroom_id: $("#classroom_id").val(),
-
-                };
-                //log(data);
+                    nameClassroom: $("#nameClassroom").val(),
+                    acronymClassroom: $("#acronymClassroom").val(),
+                    effectiveClassroom: $("#effectiveClassroom").val(),
+                    seatbenchClassroom: $("#seatbenchClassroom").val(),
+                    schoolfeesClassroom: $("#schoolfeesClassroom").val(),
+                    membership_id: $("#membership_id").val(),
+                    cycle_id: $("#cycle_id").val(),
+                }
+                log(data);
                 return data;
             case "edit":
                 let dataq = {
-                    idSubject: $("#matID").text(),
-                    nameSubject: $("#nameSubject").val(),
-                    notesurSubject: $("#notesurSubject").val(),
-                    codecourseSubject: $("#codecourseSubject").val(),
-                    coefficientSubject: $("#coefficientSubject").val(),
-                    teacher_id: $("#teacher_id").val(),
-                    classroom_id: $("#classroom_id").val(),
-
-                };
+                    idClassroom: $("#classID").text(),
+                    nameClassroom: $("#nameClassroom").val(),
+                    acronymClassroom: $("#acronymClassroom").val(),
+                    effectiveClassroom: $("#effectiveClassroom").val(),
+                    seatbenchClassroom: $("#seatbenchClassroom").val(),
+                    schoolfeesClassroom: $("#schoolfeesClassroom").val(),
+                    membership_id: $("#membership_id").val(),
+                    cycle_id: $("#cycle_id").val(),
+                }
                 log(dataq);
                 return dataq;
         }
 
     }
 
-    sendDataInDB = (m) => {
-        m = getSubjectData();
+    function pushClassroomDB(t) {
+        t = getClassroomData();
         $.ajax({
             type: 'POST',
-            url: '/addNewSubject/' + m.classroom_id + '/' + m.teacher_id,
+            url: '/addNewClassroom/' + t.cycle_id + '/' + t.membership_id,
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify(m),
+            data: JSON.stringify(t),
             success: (s) => {
                 if (s) {
                     Swal.fire({
                         position: "center",
                         //toast: true,
                         icon: "success",
-                        title: "Matière enregistrée avec succès !",
+                        title: "Classroom enregistrée avec succès !",
                         showConfirmButton: false,
                         timer: 1500,
                     }).then(() => {
@@ -67,16 +66,16 @@ $(document).ready(function () {
         });
     }
 
-    deleteSubjectData = (id) => {
+    function deleteClassroom(id) {
         $.ajax({
             type: 'GET',
-            url: '/deleteSubject/' + id,
+            url: '/deleteClassroom/' + id,
             success: (r) => {
                 if (r) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Matière supprimé avec succès!!",
+                        title: "Classroom supprimée avec succès!!",
                         showConfirmButton: false,
                         timer: 1500,
                         backdrop: true,
@@ -97,25 +96,24 @@ $(document).ready(function () {
     function goEdit() {
         state.value = "edit"
     }
-
     function injector(i) {
-        $("#matID").text(i.idSubject);
-        $("#nameSubject").val(i.nameSubject);
-        $("#notesurSubject").val(i.notesurSubject);
-        $("#codecourseSubject").val(i.codecourseSubject);
-        $("#coefficientSubject").val(i.coefficientSubject);
-        $("#teacher_id").val(i.teacher.idTeacher);
-        $("#classroom_id").val(i.classroom.idClassroom);
+        $("#classID").text(i.idClassroom);
+        $("#nameClassroom").val(i.nameClassroom);
+        $("#acronymClassroom").val(i.acronymClassroom);
+        $("#effectiveClassroom").val(i.effectiveClassroom);
+        $("#seatbenchClassroom").val(i.seatbenchClassroom);
+        $("#schoolfeesClassroom").val(i.schoolfeesClassroom);
+        $("#membership_id").val(i.membership.idMembership);
+        $("#cycle_id").val(i.cycle.idCycle);
         goEdit();
     }
 
-    function updateSubject(u) {
+    function updateClass(b) {
         $.ajax({
             type: "GET",
-            url: "/updateSubject/" + u,
+            url: "/updateClassroom/" + b,
             success: (r) => {
                 injector(r);
-                //log(injector(r));
             },
             error: (e) => {
                 log(e);
@@ -123,23 +121,22 @@ $(document).ready(function () {
         })
     }
 
-    $("#subject").on('click', (e) => {
+    $("#classroom").on('click', (e) => {
         e.preventDefault();
-        sendDataInDB();
+        pushClassroomDB();
     });
 
-    $(".subject").on('click', (e) => {
-        e.preventDefault();
-        let value = e.currentTarget.title;
-        //log(value);
-        deleteSubjectData(value);
-    });
-
-    $(".subject_edit").on('click', (e) => {
+    $(".classroom").on('click', (e) => {
         e.preventDefault();
         let value = e.currentTarget.title;
         //log(value);
-        updateSubject(value);
+        deleteClassroom(value);
     });
 
+    $(".classroom_edit").on('click', (e) => {
+        e.preventDefault();
+        let value = e.currentTarget.title;
+        //log(value);
+        updateClass(value);
+    });
 })

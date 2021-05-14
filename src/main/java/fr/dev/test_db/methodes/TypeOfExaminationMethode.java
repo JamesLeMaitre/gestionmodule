@@ -51,7 +51,17 @@ public class TypeOfExaminationMethode implements TypeOfExaminationInterface{
 	@Override
 	public TypeOfExamination updateTypeOfExamination(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		TypeOfExamination examination = new TypeOfExamination();
+		try {
+			examination = examinationRepository.findById(id).orElse(null);
+			assert examination != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			examination = null;
+			e.printStackTrace();
+		}
+		
+		return examination;
 	}
 
 }

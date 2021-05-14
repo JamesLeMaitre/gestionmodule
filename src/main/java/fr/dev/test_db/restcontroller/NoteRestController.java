@@ -28,10 +28,15 @@ public class NoteRestController {
 		}
 		return res;
 	}
-	
+
 	@GetMapping("/deleteNote/{id}")
 	public boolean deleteNotes(@PathVariable long id) {
 		return noteMethode.deleteNote(id);
+	}
+
+	@GetMapping("/updateNote/{id}")
+	public Note updateNote(@PathVariable long id) {
+		return noteMethode.updateNote(id);
 	}
 
 }

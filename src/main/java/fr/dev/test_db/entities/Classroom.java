@@ -102,7 +102,8 @@ public class Classroom {
 	public void setSchoolfeesClassroom(String schoolfeesClassroom) {
 		this.schoolfeesClassroom = schoolfeesClassroom;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Student> getStudents() {
 		return students;
 	}
@@ -110,7 +111,8 @@ public class Classroom {
 	public void setStudents(Collection<Student> students) {
 		this.students = students;
 	}
-
+	
+	@JsonIgnore
 	public Teacher getTeacher() {
 		return teacher;
 	}
@@ -118,7 +120,8 @@ public class Classroom {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Subject> getSubjects() {
 		return subjects;
 	}

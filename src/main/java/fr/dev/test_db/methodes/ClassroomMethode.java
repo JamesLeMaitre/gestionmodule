@@ -70,7 +70,16 @@ public class ClassroomMethode implements ClassroomInterface{
 	@Override
 	public Classroom updateClassroom(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Classroom classroom = new Classroom();
+		try {
+			classroom = classroomRepository.findById(id).orElse(null);
+			assert classroom != null;
+		} catch (Exception e) {
+			// TODO: handle exception
+			classroom = null;
+			e.printStackTrace();
+		}
+		return classroom;
 	}
 
 }

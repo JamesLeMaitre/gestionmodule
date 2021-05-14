@@ -4,53 +4,45 @@ $(document).ready(function () {
     let state = {
         value: "new"
     }
-
-    function getSubjectData() {
+    function getNote() {
         switch (state.value) {
             case "new":
                 let data = {
-                    nameSubject: $("#nameSubject").val(),
-                    notesurSubject: $("#notesurSubject").val(),
-                    codecourseSubject: $("#codecourseSubject").val(),
-                    coefficientSubject: $("#coefficientSubject").val(),
-                    teacher_id: $("#teacher_id").val(),
-                    classroom_id: $("#classroom_id").val(),
-
-                };
-                //log(data);
+                    student_id: $("#student_id").val(),
+                    subject_id: $("#subject_id").val(),
+                    note: $("#note").val(),
+                    examination_id: $("#examination_id").val(),
+                }
+                log(data);
                 return data;
             case "edit":
                 let dataq = {
-                    idSubject: $("#matID").text(),
-                    nameSubject: $("#nameSubject").val(),
-                    notesurSubject: $("#notesurSubject").val(),
-                    codecourseSubject: $("#codecourseSubject").val(),
-                    coefficientSubject: $("#coefficientSubject").val(),
-                    teacher_id: $("#teacher_id").val(),
-                    classroom_id: $("#classroom_id").val(),
-
-                };
+                    idNote: $("#noteID").text(),
+                    student_id: $("#student_id").val(),
+                    subject_id: $("#subject_id").val(),
+                    note: $("#note").val(),
+                    examination_id: $("#examination_id").val(),
+                }
                 log(dataq);
                 return dataq;
         }
-
     }
 
-    sendDataInDB = (m) => {
-        m = getSubjectData();
+    function saveNote(n) {
+        n = getNote();
         $.ajax({
             type: 'POST',
-            url: '/addNewSubject/' + m.classroom_id + '/' + m.teacher_id,
+            url: '/addNewNote/' + n.student_id + '/' + n.examination_id + '/' + n.subject_id,
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify(m),
+            data: JSON.stringify(n),
             success: (s) => {
                 if (s) {
                     Swal.fire({
                         position: "center",
                         //toast: true,
                         icon: "success",
-                        title: "Matière enregistrée avec succès !",
+                        title: "Note enregistré avec succès !",
                         showConfirmButton: false,
                         timer: 1500,
                     }).then(() => {
@@ -67,16 +59,16 @@ $(document).ready(function () {
         });
     }
 
-    deleteSubjectData = (id) => {
+    function deleteStudentNote(id) {
         $.ajax({
             type: 'GET',
-            url: '/deleteSubject/' + id,
+            url: '/deleteNote/' + id,
             success: (r) => {
                 if (r) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Matière supprimé avec succès!!",
+                        title: "Note supprimée avec succès!!",
                         showConfirmButton: false,
                         timer: 1500,
                         backdrop: true,
@@ -92,30 +84,27 @@ $(document).ready(function () {
                 log(e);
             }
         })
-    }
+    };
 
     function goEdit() {
         state.value = "edit"
     }
 
-    function injector(i) {
-        $("#matID").text(i.idSubject);
-        $("#nameSubject").val(i.nameSubject);
-        $("#notesurSubject").val(i.notesurSubject);
-        $("#codecourseSubject").val(i.codecourseSubject);
-        $("#coefficientSubject").val(i.coefficientSubject);
-        $("#teacher_id").val(i.teacher.idTeacher);
-        $("#classroom_id").val(i.classroom.idClassroom);
+    function injector(n) {
+        $("#noteID").text(n.idNote);
+         $("#student_id").val(n.student.idStudent);
+        $("#subject_id").val(n.subject.idSubject);
+        $("#note").val(n.note);
+        $("#examination_id").val(n.examination.idTypeexamination);
         goEdit();
     }
 
-    function updateSubject(u) {
+    function updateStudentNote(s) {
         $.ajax({
             type: "GET",
-            url: "/updateSubject/" + u,
-            success: (r) => {
-                injector(r);
-                //log(injector(r));
+            url: "/updateNote/" + s,
+            success: (s) => {
+                injector(s);
             },
             error: (e) => {
                 log(e);
@@ -123,23 +112,22 @@ $(document).ready(function () {
         })
     }
 
-    $("#subject").on('click', (e) => {
+    $("#notes").on('click', (e) => {
         e.preventDefault();
-        sendDataInDB();
+        saveNote();
     });
 
-    $(".subject").on('click', (e) => {
-        e.preventDefault();
-        let value = e.currentTarget.title;
-        //log(value);
-        deleteSubjectData(value);
-    });
-
-    $(".subject_edit").on('click', (e) => {
+    $(".notes").on('click', (e) => {
         e.preventDefault();
         let value = e.currentTarget.title;
         //log(value);
-        updateSubject(value);
+        deleteStudentNote(value);
     });
 
+    $(".notes_edit").on('click', (e) => {
+        e.preventDefault();
+        let value = e.currentTarget.title;
+        //log(value);
+        updateStudentNote(value);
+    });
 })

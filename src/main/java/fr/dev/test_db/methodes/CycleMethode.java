@@ -49,7 +49,17 @@ public class CycleMethode implements CycleInterface{
 	@Override
 	public Cycle updateCycle(long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Cycle cycle = new Cycle();
+		try {
+			cycle = cycleRepository.findById(id).orElse(null);
+			assert cycle != null;
+		} catch (Exception e) {
+			cycle = null;
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+		return cycle;
+		
 	}
 
 }

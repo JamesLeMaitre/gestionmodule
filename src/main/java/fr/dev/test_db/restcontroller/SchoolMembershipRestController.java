@@ -33,5 +33,10 @@ public class SchoolMembershipRestController {
 	public boolean deleteSchoolMemberShips(@PathVariable long id) {
 		return membershipMethode.deleteSchoolMembership(id);
 	}
+	
+	@GetMapping("/updateSchoolMembership/{id}")
+	public School_membership updateMembership(@PathVariable long id) {
+		return membershipMethode.updateSchoolMembership(id);
+	}
 
 }

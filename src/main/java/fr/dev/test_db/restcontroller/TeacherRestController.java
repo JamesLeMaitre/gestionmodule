@@ -32,5 +32,10 @@ public class TeacherRestController {
 	public boolean deleteTeachers(@PathVariable long id) {
 		return teacherMethode.deleteTeacher(id);
 	}
+	
+	@GetMapping("/updateTeacher/{id}")
+	public Teacher updateTeacher(@PathVariable long id) {
+		return teacherMethode.updateTeacher(id);
+	}
 
 }

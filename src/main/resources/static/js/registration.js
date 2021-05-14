@@ -5,52 +5,42 @@ $(document).ready(function () {
         value: "new"
     }
 
-    function getSubjectData() {
+    function getRegistrationData() {
         switch (state.value) {
             case "new":
                 let data = {
-                    nameSubject: $("#nameSubject").val(),
-                    notesurSubject: $("#notesurSubject").val(),
-                    codecourseSubject: $("#codecourseSubject").val(),
-                    coefficientSubject: $("#coefficientSubject").val(),
-                    teacher_id: $("#teacher_id").val(),
-                    classroom_id: $("#classroom_id").val(),
-
-                };
-                //log(data);
+                    academical_id: $("#academical_id").val(),
+                }
+                log(data);
                 return data;
+
             case "edit":
                 let dataq = {
-                    idSubject: $("#matID").text(),
-                    nameSubject: $("#nameSubject").val(),
-                    notesurSubject: $("#notesurSubject").val(),
-                    codecourseSubject: $("#codecourseSubject").val(),
-                    coefficientSubject: $("#coefficientSubject").val(),
-                    teacher_id: $("#teacher_id").val(),
-                    classroom_id: $("#classroom_id").val(),
-
-                };
+                    idRegistration: $("#rID").text(),
+                    academical_id: $("#academical_id").val(),
+                }
                 log(dataq);
                 return dataq;
         }
 
     }
 
-    sendDataInDB = (m) => {
-        m = getSubjectData();
+    function push_in_db(x) {
+        x = getRegistrationData();
+        log(x);
         $.ajax({
             type: 'POST',
-            url: '/addNewSubject/' + m.classroom_id + '/' + m.teacher_id,
+            url: '/addNewRegistration/' + x.academical_id,
             contentType: 'application/json',
             dataType: 'json',
-            data: JSON.stringify(m),
+            data: JSON.stringify(x),
             success: (s) => {
                 if (s) {
                     Swal.fire({
                         position: "center",
                         //toast: true,
                         icon: "success",
-                        title: "Matière enregistrée avec succès !",
+                        title: "Registration enregistrée avec succès !",
                         showConfirmButton: false,
                         timer: 1500,
                     }).then(() => {
@@ -67,16 +57,16 @@ $(document).ready(function () {
         });
     }
 
-    deleteSubjectData = (id) => {
+    function deleteRegistration(id) {
         $.ajax({
             type: 'GET',
-            url: '/deleteSubject/' + id,
+            url: '/deleteRegistration/' + id,
             success: (r) => {
                 if (r) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Matière supprimé avec succès!!",
+                        title: "Registration supprimée avec succès!!",
                         showConfirmButton: false,
                         timer: 1500,
                         backdrop: true,
@@ -95,27 +85,21 @@ $(document).ready(function () {
     }
 
     function goEdit() {
-        state.value = "edit"
+        state.value = "edit";
     }
 
     function injector(i) {
-        $("#matID").text(i.idSubject);
-        $("#nameSubject").val(i.nameSubject);
-        $("#notesurSubject").val(i.notesurSubject);
-        $("#codecourseSubject").val(i.codecourseSubject);
-        $("#coefficientSubject").val(i.coefficientSubject);
-        $("#teacher_id").val(i.teacher.idTeacher);
-        $("#classroom_id").val(i.classroom.idClassroom);
+        $("#rID").text(i.idRegistration);
+        $("#academical_id").val(i.academical.idAcademical);
         goEdit();
     }
 
-    function updateSubject(u) {
+    function updateRegistration(u) {
         $.ajax({
             type: "GET",
-            url: "/updateSubject/" + u,
-            success: (r) => {
-                injector(r);
-                //log(injector(r));
+            url: "/updateRegistration/" + u,
+            success: (s) => {
+                injector(s);
             },
             error: (e) => {
                 log(e);
@@ -123,23 +107,24 @@ $(document).ready(function () {
         })
     }
 
-    $("#subject").on('click', (e) => {
+    $("#registration").on('click', (e) => {
         e.preventDefault();
-        sendDataInDB();
-    });
+        //getRegistrationData();
+        push_in_db();
+    })
 
-    $(".subject").on('click', (e) => {
-        e.preventDefault();
-        let value = e.currentTarget.title;
-        //log(value);
-        deleteSubjectData(value);
-    });
 
-    $(".subject_edit").on('click', (e) => {
+    $(".registration").on('click', (e) => {
         e.preventDefault();
         let value = e.currentTarget.title;
         //log(value);
-        updateSubject(value);
-    });
+        deleteRegistration(value);
+    })
 
+    $(".registration_edit").on('click', (e) => {
+        e.preventDefault();
+        let value = e.currentTarget.title;
+        //log(value);
+        updateRegistration(value);
+    })
 })

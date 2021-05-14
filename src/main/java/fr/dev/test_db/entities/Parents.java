@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Parents {
     @Id
@@ -182,7 +184,8 @@ public class Parents {
 	public void setPhotoMother(String photoMother) {
 		this.photoMother = photoMother;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Student> getStudents() {
 		return students;
 	}

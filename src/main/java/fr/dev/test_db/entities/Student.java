@@ -196,7 +196,6 @@ public class Student {
 		this.schooloforiginStudent = schooloforiginStudent;
 	}
 
-	@JsonIgnore
 	public Classroom getClassroom() {
 		return classroom;
 	}
@@ -228,7 +227,8 @@ public class Student {
 	public void setParents(Parents parents) {
 		this.parents = parents;
 	}
-
+	
+	@JsonIgnore
 	public Set<Note> getNotes() {
 		return notes;
 	}

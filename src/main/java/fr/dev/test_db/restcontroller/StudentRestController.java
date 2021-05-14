@@ -16,6 +16,7 @@ public class StudentRestController {
 	@Autowired
 	private StudentMethode studentMethode;
 
+	
 	@PostMapping("/addNewStudent/{registration_id}/{parents_id}/{classroom_id}/{teacher_id}")
 	public boolean addStudent(@RequestBody Student student, @PathVariable long registration_id,
 			@PathVariable long parents_id, @PathVariable long classroom_id, @PathVariable long teacher_id) {
@@ -29,9 +30,15 @@ public class StudentRestController {
 		}
 		return res;
 	}
-
+	
 	@GetMapping("/deleteStudent/{id}")
 	public boolean deleteStudents(@PathVariable long id) {
 		return studentMethode.deleteStudent(id);
+	}
+	
+	@GetMapping("/updateStudent/{id}")
+	public Student updateStudentInfo(@PathVariable long id) {
+		
+		return studentMethode.updateStudent(id);
 	}
 }

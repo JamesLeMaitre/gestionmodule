@@ -33,5 +33,10 @@ public class AcademicalRestController {
 	public boolean deleteAcadelicYear(@PathVariable long id) {
 		return academicalMethode.deleteAcadelical(id);
 	}
+	
+	@GetMapping("/updateAcademicalYear/{id}")
+	public Academical updateAcademical(@PathVariable long id) {
+		return academicalMethode.updateAcademical(id);
+	}
 
 }

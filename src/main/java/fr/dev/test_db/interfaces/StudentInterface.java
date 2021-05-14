@@ -10,6 +10,8 @@ public interface StudentInterface {
 
 	void addNewStudent(Student student, long registration_id, long parents_id, long classroom_id, long teacher_id);
 
+	//void addNewStudents(Student student, long registration_id);
+
 	boolean deleteStudent(long id);
 
 	Student updateStudent(long id);
